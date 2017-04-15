@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+  php: 
+    image: php:7.1-fpm
+    # links:
+    #   - mysql
+  nginx:
+    image: nginx
+    links:
+        - php
+  # mysql:
+  #   image: mysql
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=pass
+  #     - MYSQL_DATABASE=example
+  #     - MYSQL_USER=example
+  #     - MYSQL_PASSWORD=example
