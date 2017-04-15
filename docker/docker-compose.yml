@@ -13,7 +13,8 @@ services:
       - DB_DSN=mysql:host=mysql;dbname=example
       - DB_USERNAME=example
       - DB_PASSWORD=example
-
+    command: ["/var/www/wait-for-it.sh", "mysql:3306", "--", "/var/www/post-up.sh"]
+ 
   nginx:
     image: nginx
     links:
@@ -25,7 +26,11 @@ services:
       - '8888:80'
 
   mysql:
-    image: mysql
+    image: mysql:5.6
+    ports:
+        - "3306:3306"
+    expose:
+        - "3306"
     environment:
       - MYSQL_ROOT_PASSWORD=pass
       - MYSQL_DATABASE=example

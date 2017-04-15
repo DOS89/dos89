@@ -24,3 +24,9 @@ RUN docker-php-ext-install pdo_mysql
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
 RUN composer global require "fxp/composer-asset-plugin:^1.2.0"
+
+COPY wait-for-it.sh /var/www/wait-for-it.sh
+RUN chmod 0755 /var/www/wait-for-it.sh
+
+COPY post-up.sh /var/www/post-up.sh
+RUN chmod 0755 /var/www/post-up.sh
